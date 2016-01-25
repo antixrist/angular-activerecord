@@ -48,8 +48,8 @@ angular-activerecord is a [Backbone.Model](http://backbonejs.org/#Model) inspire
 		},
 
 		// optional named constructor (Shows "Task" as the type in a console.log)
-		$constructor: function Task(properties) {
-			this.$initialize.apply(this, arguments)
+		$initialize: function Task(properties) {
+			
 		},
 
 		// An example method for task instances
