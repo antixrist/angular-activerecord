@@ -45,7 +45,13 @@ angular.module('ActiveRecord', []).factory('ActiveRecord', ['$http', '$q', '$par
 	 * @param {Object} [options]
 	 */
 	var ActiveRecord = function ActiveRecord(properties, options) {
-		this.$initialize.apply(this, arguments);
+		this.$constructor.apply(this, arguments);
+
+		if (typeof this.$initialize == 'function') {
+			this.$initialize.apply(this, arguments);
+		}
+
+		return this;
 	};
 	ActiveRecord.prototype = {
 
@@ -65,7 +71,7 @@ angular.module('ActiveRecord', []).factory('ActiveRecord', ['$http', '$q', '$par
 		 * @param {Object} [properties]  Initialize the record with these property values.
 		 * @param {Object} [options]
 		 */
-		$initialize: function (properties, options) {
+		$constructor: function (properties, options) {
 			options = options || {};
 			var defaults = _result(this, '$defaults');
 			if (defaults) {
